@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import VoiceOfCustomerModal from './VoiceOfCustomerModal';
 import NaverLogin from './NaverLogin';
 import {
@@ -157,13 +158,13 @@ const Header: React.FC = () => {
       >
         {/* 로고 — 온보딩 ref 부착 */}
         <Box sx={{ mb: 2 }} ref={logoRef}>
-          <a href="/home" onClick={(e) => { e.preventDefault(); router.push('/home'); }} style={{ display: 'inline-block' }}>
+          <Link href="/home" style={{ display: 'inline-block' }}>
             <img
               alt="Quiet Chatter Icon"
               src="/images/quiet-chatter-icon2.png"
               style={{ width: '180px', height: '180px', marginBottom: '1rem', objectFit: 'contain' }}
             />
-          </a>
+          </Link>
         </Box>
         <form onSubmit={handleSearch}>
           <Box sx={{ display: 'flex', gap: 1, maxWidth: 600, mx: 'auto' }}>

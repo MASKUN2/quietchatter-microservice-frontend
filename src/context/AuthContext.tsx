@@ -19,15 +19,7 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [member, setMember] = useState<Member | null>(() => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const savedMember = localStorage.getItem('auth_member');
-      return savedMember ? JSON.parse(savedMember) : null;
-    } catch {
-      return null;
-    }
-  });
+  const [member, setMember] = useState<Member | null>(null);
   const [loading, setLoading] = useState(true);
 
   const refreshMember = useCallback(async () => {
@@ -59,6 +51,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     let isMounted = true;
 
     const initAuth = async () => {
+      // 1. Try to load from localStorage first for immediate UI
+      const savedMember = localStorage.getItem('auth_member');
+      if (savedMember) {
+        try {
+          setMember(JSON.parse(savedMember));
+        } catch (e) {
+          console.error('Failed to parse saved member', e);
+        }
+      }
+
+      // 2. Then refresh from server
       await refreshMember();
       if (isMounted) {
         setLoading(false);
