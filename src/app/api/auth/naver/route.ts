@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const clientId = process.env.NAVER_CLIENT_ID;
+  const clientId = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
   const baseUrl = process.env.BFF_BASE_URL || 'http://localhost:3000';
   const redirectUri = encodeURIComponent(`${baseUrl}/api/auth/naver/callback`);
   const state = crypto.randomUUID();
