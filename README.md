@@ -60,4 +60,4 @@ npm run start   # 빌드된 결과물 실행
 ## 6. 인프라 및 배포
 
 본 서비스는 Docker `standalone` 모드로 빌드되어 실행됩니다.
-ARM64 아키텍처(AWS t4g 인스턴스 등)에 최적화된 Dockerfile을 제공하며, 내부망의 `microservice-gateway`를 통해 다른 마이크로서비스들과 통신합니다.
+ARM64 아키텍처(AWS t4g 인스턴스 등)에 최적화된 Dockerfile을 제공하며, 내부망의 `microservice-api-gateway`를 통해 다른 마이크로서비스들과 통신합니다.
